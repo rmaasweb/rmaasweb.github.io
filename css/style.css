@@ -1,0 +1,373 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500');
+
+body{
+	margin:0;
+	padding:0;
+	font-size:14px;
+	font-family: 'Poppins', sans-serif;
+}
+a, a:link, a:visited, a:active, a:hover,button,input,select,textarea,i{
+	text-decoration: none;
+	outline:none;
+	-moz-transition: all 300ms ease-in-out;
+	-webkit-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out;	
+}
+input, select, textarea {
+	width: 100%;
+	outline:none;
+	-moz-transition: all 300ms ease-in-out;
+	-webkit-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out;
+}
+input:focus, select:focus, textarea:focus{
+	outline: none;
+	box-shadow: none;
+}
+img{
+	max-width:100%;
+	-moz-transition: all 300ms ease-in-out;
+	-webkit-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out;
+}
+.container {
+	max-width: 1400px;
+}
+
+header{
+	padding: 50px 0;
+	background: url(../images/Folder-patterns.png) no-repeat right;
+	background-size: 100% 100%;
+}
+.navbar{
+	padding: 0;
+}
+
+.navbar-light .navbar-nav .nav-link{
+	color: #939393;
+	font-size: 18px;
+	text-transform: capitalize;
+	position: relative;
+	padding: 10px 25px;
+}
+.navbar-light .navbar-nav .nav-link:after{
+	-moz-transition: all 300ms ease-in-out;
+	-webkit-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out;
+}
+.navbar-light .navbar-nav .active .nav-link:after,
+.navbar-light .navbar-nav .nav-link:hover:after{
+	content: "";
+	width: 30px;
+	height: 1px;
+	display: block;
+	background: #ca5558;
+}
+.navbar-light .navbar-nav .active > .nav-link, 
+.navbar-light .navbar-nav .nav-link.active, 
+.navbar-light .navbar-nav .nav-link.show, 
+.navbar-light .navbar-nav .show > .nav-link,
+.navbar-light .navbar-nav .nav-link:focus, 
+.navbar-light .navbar-nav .nav-link:hover{
+	color: #ca5558;
+}
+
+
+.text_caption{
+	margin: 120px 0;
+	text-align: left;
+	padding-left: 20px;
+}
+.text_caption h1{
+	font-size: 50px;
+	color: #11807f;
+	font-weight: 500;
+	margin-bottom:20px;
+}
+.text_caption p{
+	font-size: 60px;
+	color: #444;
+	font-weight: 300;
+	margin: 30px 0;
+}
+.text_caption span{
+	font-size: 18px;
+	color: #444;
+	display: block;
+}
+.text_caption a{
+	font-size: 20px;
+	color: #fff;
+	text-align: center;
+	font-weight: 500;
+	background: #fa504f;
+	width:300px;
+	height: 75px;
+	line-height: 75px;
+	display: inline-block;
+	border-radius: 50px;
+	margin-top: 35px;
+}
+.text_caption a:hover{
+	background: #11807f;
+}
+
+/*================================================== Archiving Css Start here ==================================================*/
+
+.archiving{
+	padding:150px 0;
+	background: url(../images/realtime-archiving-bg.png) no-repeat right;
+	background-size: cover;
+	color: #fff;
+}
+.archiving h2{
+	font-size: 60px;
+	font-weight: 300;
+	margin-bottom:40px;
+}
+.archiving p{
+	font-size: 18px;
+}
+
+/*================================================== High lights Css Start here ==================================================*/
+
+.High_lights{
+	padding: 110px 0;
+}
+.High_lights p{
+	font-size: 40px;
+	color: #444444;
+	font-weight: 300;
+	margin: 35px 0;
+}
+
+.ul_style li{
+	padding-left: 20px;
+	position: relative;
+	font-size: 18px;
+	color: #444444;
+	margin-bottom: 20px;
+}
+.ul_style li:before{
+	content: "";
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #11807f;
+	position: absolute;
+	top: 7px;
+	left: 0;
+}
+
+/*================================================== Proven scalability Css Start here ==================================================*/
+
+.Proven_scalability{
+	background: #fa504f;
+}
+.petabytes{
+	background: #fff;
+	padding: 70px;
+}
+.petabytes a{
+	color: #fa504f;
+	font-weight: 600;
+}
+.petabytes span{
+	font-size: 50px;
+	font-weight: 300;
+	color: #444444;
+	line-height: 55px;
+	margin-bottom: 25px;
+	display: block;
+}
+.petabytes p{
+	font-size: 18px;
+	color: #444444;
+}
+.micro_service{
+	padding: 70px 0  20px 170px;
+}
+.micro_service span{
+	font-size: 46px;
+	color: #fff;
+	font-family: Constantia, "Lucida Bright", "DejaVu Serif", Georgia, "serif";
+	font-style: italic;
+	line-height: 60px;
+	margin-bottom: 30px;
+	display: block;
+}
+.micro_service p{
+	font-size: 20px;
+	color: #fff;
+}
+.micro_service i{
+	font-size: 70px;
+	color:rgba(255,255,255,0.5);
+	position: absolute;
+	left: 80px;
+}
+
+
+.Secure_Compliant{
+	background: #11807f;
+	padding: 100px 0;
+	color: #fff;
+	font-size: 18px;
+}
+.Secure_Compliant span{
+	margin-bottom: 20px;
+	font-size: 50px;
+	font-weight: 300;
+	display: block;
+}
+.Secure_Compliant p{
+	margin-bottom: 30px;
+}
+
+/*================================================== Proven scalability Css Start here ==================================================*/
+
+.market{
+	padding: 130px 0;
+	text-align: center;
+}
+.market a{
+	font-size:18px;
+	color: #fa504f;
+	font-weight: 600;
+}
+.market span{
+	font-size: 50px;
+	color: #11807f;
+	font-weight: 300;
+	margin-bottom: 40px;
+	display: block;
+}
+.market p{
+	font-size:18px;
+	color: #444444;
+}
+
+/*================================================== Record Api Css Start here ==================================================*/
+
+.record_api{
+	background: #fff8f8;
+	padding: 130px 0;
+}
+.record_api span{
+	font-size: 50px;
+	color: #fa504f;
+	margin-bottom:80px;
+	display: block;
+	font-weight: 300;
+}
+.record_api h3{
+	font-size: 40px;
+	color: #444444;
+	font-weight: 300;
+	margin-bottom: 30px;
+}
+.record_api a{
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 20px;
+	font-weight: 500;
+	background: #fa504f;
+	display: table;
+	margin: 50px auto 0px auto;
+	width: 300px;
+	height: 75px;
+	line-height: 75px;
+	text-align: center;
+	border-radius: 50px;
+}
+.record_api a:hover {
+	background: #11807f;
+}
+
+/*================================================== platform Css Start here ==================================================*/
+
+.platform{
+	padding: 160px 0;
+}
+.ul_style2 li{
+	font-size: 18px;
+	color: #444444;
+	padding-left: 25px;
+	position: relative;
+	margin-bottom: 30px;
+}
+.ul_style2 li:before{
+	content: "";
+	width: 6px;
+	height: 100%;
+	background: #11807f;
+	position: absolute;
+	min-height: 37px;
+	top: 0;
+	left: 0;
+}
+
+footer{
+	background: #f5f5f5;
+	text-align: center;
+	padding: 80px 0;
+}
+.link a{
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 20px;
+	font-weight: 500;
+	background: #fa504f;
+	display:inline-block;
+	width: 300px;
+	height: 75px;
+	line-height: 75px;
+	text-align: center;
+	border-radius: 50px;
+	margin:0 5px;
+}
+.link a:hover {
+	background: #11807f;
+}
+
+
+
+.copyright{
+	border-top: 1px solid #eaeaea;
+	margin-top: 70px;
+}
+.copy_link ul{
+	margin: 0;
+}
+.copy_link li{
+	display: inline-block;
+	margin: 20px;
+}
+.copy_link li a{
+	font-size: 18px;
+	color: #444;
+}
+.copy_link p{
+	font-size: 18px;
+	color: #c7c7c7;
+	margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
