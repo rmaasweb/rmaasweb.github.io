@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500');
 
+
+
+@font-face {
+    font-family: 'Georgia';
+    src: url('../fonts/Georgia-Italic.eot');
+    src: local('../fonts/Georgia Italic'), local('Georgia-Italic'),
+        url('../fonts/Georgia-Italic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Georgia-Italic.woff2') format('woff2'),
+        url('../fonts/Georgia-Italic.woff') format('woff'),
+        url('../fonts/Georgia-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+
+
 body{
 	margin:0;
 	padding:0;
@@ -30,9 +46,9 @@ img{
 	-webkit-transition: all 300ms ease-in-out;
 	transition: all 300ms ease-in-out;
 }
-.container {
+/*.container {
 	max-width: 1400px;
-}
+}*/
 
 header{
 	padding: 50px 0;
@@ -48,7 +64,7 @@ header{
 	font-size: 18px;
 	text-transform: capitalize;
 	position: relative;
-	padding: 10px 25px;
+	padding: 10px 20px;
 }
 .navbar-light .navbar-nav .nav-link:after{
 	-moz-transition: all 300ms ease-in-out;
@@ -190,7 +206,7 @@ header{
 .micro_service span{
 	font-size: 46px;
 	color: #fff;
-	font-family: Constantia, "Lucida Bright", "DejaVu Serif", Georgia, "serif";
+	 font-family: 'Georgia';
 	font-style: italic;
 	line-height: 60px;
 	margin-bottom: 30px;
@@ -292,19 +308,73 @@ header{
 .ul_style2 li{
 	font-size: 18px;
 	color: #444444;
-	padding-left: 25px;
+	padding-left: 5px;
 	position: relative;
-	margin-bottom: 30px;
+	margin-bottom: 15px;
+    padding-top: 5px;
+	    /*display: table;*/
+	
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+
+	align-items: center;
+	
 }
-.ul_style2 li:before{
+
+.ul_style2 li i.separator-line{
+    height: 37px;
+    width: 6px;
+    margin-right: 20px;
+    font-size: 37px;
+    font-weight: 700;
+    line-height: 37px;
+	color: #11807f;
+	font-style: normal;
+	
+}
+
+
+
+
+
+/*.ul_style2 li:before{
 	content: "";
 	width: 6px;
-	height: 100%;
+	height: 25px;
 	background: #11807f;
 	position: absolute;
 	min-height: 37px;
 	top: 0;
 	left: 0;
+	
+}
+.ul_style2 li i {
+    height: 35px;
+    display: table-cell;
+    vertical-align: middle;
+
+}
+
+.ul_style2 li i span{
+
+    width: 6px;
+    background: #11807f;
+    position: relative;
+    display: block;
+    height: 35px;
+	
+}*/
+
+.ul_style2 li p {
+
+	margin-bottom:0px;
+    margin-left: 15px;
+	
 }
 
 footer{
