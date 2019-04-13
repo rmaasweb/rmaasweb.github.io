@@ -15,10 +15,6 @@ body {
 }
 
 a,
-a:link,
-a:visited,
-a:active,
-a:hover,
 button,
 input,
 select,
@@ -59,12 +55,9 @@ img {
 /*.container {
 	max-width: 1400px;
 }*/
-
-header {
-  padding: 50px 0;
-  background: url(../images/Folder-patterns.png) no-repeat right;
-  background-size: 100% 100%;
-}
+/*==================================================
+ Navigation Bar
+ ==================================================*/
 
 .navbar {
   padding: 0;
@@ -102,33 +95,76 @@ header {
   color: #ca5558;
 }
 
-.text_caption {
+@media screen and (max-width: 1024px) {
+  .navbar-light .navbar-nav .nav-link {
+		font-size: 16px;
+		padding: 10px 15px;
+	}
+}
+
+@media screen and (max-width: 991px) {
+  .navbar-light .navbar-nav .nav-link {
+		font-size: 18px;
+		padding: 10px 0;
+  }
+  .navbar-light .navbar-toggler {
+		color: rgba(0,0,0,.5);
+		border-color: transparent;
+		outline: none;
+		padding: 0;
+	}	
+	.navbar-light .navbar-toggler-icon{
+		background-image: none;
+		color: #fd4e4a;
+		font-size: 30px; 
+		width: auto;
+		height: auto;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.navbar-collapse {
+		padding: 0 15px;
+  }
+}
+
+/*==================================================
+ Hero Section 
+ ==================================================*/
+
+.main-hero {
+  padding: 50px 0;
+  background: url(../images/Folder-patterns.png) no-repeat right;
+  background-size: 100% 100%;
+}
+
+.hero-section {
   margin: 120px 0;
   text-align: left;
   padding-left: 20px;
 }
 
-.text_caption h1 {
+.hero-section-site-logo {
   font-size: 50px;
   color: #11807f;
   font-weight: 500;
   margin-bottom: 20px;
 }
 
-.text_caption p {
+.hero-section-headline {
   font-size: 60px;
   color: #444;
   font-weight: 300;
   margin: 30px 0;
 }
 
-.text_caption span {
-  font-size: 18px;
+.hero-section-subheadline {
+  font-size: 20px;
   color: #444;
   display: block;
 }
 
-.text_caption a {
+.hero-section-cta {
   font-size: 20px;
   color: #fff;
   text-align: center;
@@ -142,11 +178,56 @@ header {
   margin-top: 35px;
 }
 
-.text_caption a:hover {
+.hero-section-cta:hover {
   background: #11807f;
 }
 
+@media only screen and (min-width:1600px) and (max-width:1900px) {
+  .hero-section-headline {
+		font-size: 50px;
+	}
+}
 
+@media only screen and (min-width:1400px) and (max-width:1599px) {
+	.hero-section-headline {
+		font-size:40px;
+	}
+}
+
+@media only screen and (min-width:1200px) and (max-width:1399px) {
+  .hero-section-headline {
+		font-size:30px;
+	}
+	.hero-section {
+		padding-left: 20px;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.hero-section-headline {
+		font-size:30px;
+	}
+	.hero-section {
+		padding-left: 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .main-hero {
+    background: none;
+  }
+  .hero-section {
+    margin: 30px 0;
+		text-align: center;
+  }
+  .hero-section-site-logo {
+    font-size: 30px;
+    margin-bottom: 0px;
+  }		
+  .hero-section-headline {
+		font-size: 37px;
+  }
+}
 /*==================================================
  Archiving Css Start here 
  ==================================================*/

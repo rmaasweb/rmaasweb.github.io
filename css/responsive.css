@@ -5,27 +5,13 @@
 }
 	
 @media only screen and (min-width:1600px) and (max-width:1900px) {
-	.text_caption p {
-		font-size: 50px;
-	}
 	.container-fluid {
 		max-width: 1400px;
 	}	
 }
 	
-@media only screen and (min-width:1400px) and (max-width:1599px) {
-	.text_caption p {
-		font-size:40px;
-	}
-}
 	
 @media only screen and (min-width:1200px) and (max-width:1399px) {
-	.text_caption p {
-		font-size:30px;
-	}
-	.text_caption {
-		padding-left: 20px;
-	}
 	.container {
 		max-width:1140px;
 	}
@@ -42,12 +28,6 @@
 }
 	
 @media screen and (max-width: 1024px) {
-	.text_caption p {
-		font-size:30px;
-	}
-	.text_caption {
-		padding-left: 0;
-	}
 	.container {
 		max-width:100%;
 	}
@@ -72,10 +52,7 @@
 		margin-bottom: 25px;
 				min-height: 48px;
 	}
-	.navbar-light .navbar-nav .nav-link {
-		font-size: 16px;
-		padding: 10px 15px;
-	}
+	
 	.High_lights p {
 		font-size: 30px;
 	}
@@ -107,13 +84,7 @@
 		background: none;
 		padding: 30px 0;
 	}
-	.navbar-light .navbar-nav .nav-link {
-		font-size: 18px;
-		padding: 10px 0;
-	}
-	.text_caption{
-		margin: 30px 0;
-	}
+	
 	.petabytes {
 		background: #fff;
 		padding:50px 10px 50px 10px;
@@ -158,37 +129,15 @@
 		line-height: 65px;
 		margin: 0 3px;
 	}
-	.navbar-light .navbar-toggler {
-		color: rgba(0,0,0,.5);
-		border-color: transparent;
-		outline: none;
-		padding: 0;
-	}	
-	.navbar-light .navbar-toggler-icon{
-		background-image: none;
-		color: #fd4e4a;
-		font-size: 30px; 
-		width: auto;
-		height: auto;
-	}
+	
 }
 	
 @media screen and (max-width: 767px) {
-	.navbar-collapse {
-		padding: 0 15px;
-	}
-	.text_caption{
-		margin: 30px 0;
-		text-align: center;
-	}
 	.archiving,
 	.High_lights,
 	.Secure_Compliant,
 	.record_api{
 		text-align: center;
-	}
-	.text_caption p {
-		font-size: 37px;
 	}
 	.archiving h2 {
 		font-size: 35px;
@@ -250,10 +199,7 @@
 	.copy_link p{
 		margin-top: 30px;
 	}	
-	.text_caption h1 {
-		font-size: 30px;
-		margin-bottom: 0px;
-	}		
+	
 }
 	
 @media screen and (max-width:480px) {

@@ -11,11 +11,11 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Site Title"
+title                    : "record.digital"
 title_separator          : "|"
 name                     : "Your Name"
 description              : "An amazing website."
-url                      : # the base hostname & protocol for your site e.g. "https://fatah.co"
+url                      :  "https://rmaasweb.github.io"  # the base hostname & protocol for your site e.g. "https://fatah.co"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g.
 markdown: kramdown
