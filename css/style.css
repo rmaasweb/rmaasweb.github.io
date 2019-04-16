@@ -254,11 +254,11 @@ img {
  High lights Css Start here 
  ==================================================*/
 
-.High_lights {
+.highlights {
   padding: 110px 0;
 }
 
-.High_lights p {
+.highlights p {
   font-size: 40px;
   color: #444444;
   font-weight: 300;
@@ -289,7 +289,7 @@ img {
  Proven scalability Css Start here 
  ==================================================*/
 
-.Proven_scalability {
+.testimonial {
   background: #fa504f;
 }
 
@@ -343,21 +343,21 @@ img {
   left: 80px;
 }
 
-.Secure_Compliant {
+.trust-badge-section {
   background: #11807f;
   padding: 100px 0;
   color: #fff;
   font-size: 18px;
 }
 
-.Secure_Compliant span {
+.trust-badge-section span {
   margin-bottom: 20px;
   font-size: 50px;
   font-weight: 300;
   display: block;
 }
 
-.Secure_Compliant p {
+.trust-badge-section p {
   margin-bottom: 30px;
 }
 
@@ -366,18 +366,18 @@ img {
  Proven scalability Css Start here 
  ==================================================*/
 
-.market {
+.open-source-section {
   padding: 130px 0;
   text-align: center;
 }
 
-.market a {
+.open-source-section a {
   font-size: 18px;
   color: #fa504f;
   font-weight: 600;
 }
 
-.market span {
+.open-source-section span {
   font-size: 50px;
   color: #11807f;
   font-weight: 300;
@@ -385,7 +385,7 @@ img {
   display: block;
 }
 
-.market p {
+.open-source-section p {
   font-size: 18px;
   color: #444444;
 }
@@ -395,12 +395,12 @@ img {
  Record Api Css Start here 
  ==================================================*/
 
-.record_api {
+.api-services {
   background: #fff8f8;
   padding: 130px 0;
 }
 
-.record_api span {
+.api-services span {
   font-size: 50px;
   color: #fa504f;
   margin-bottom: 80px;
@@ -408,14 +408,14 @@ img {
   font-weight: 300;
 }
 
-.record_api h3 {
+.api-services h3 {
   font-size: 40px;
   color: #444444;
   font-weight: 300;
   margin-bottom: 30px;
 }
 
-.record_api a {
+.api-services a {
   color: #fff;
   text-transform: uppercase;
   font-size: 20px;
@@ -430,16 +430,16 @@ img {
   border-radius: 50px;
 }
 
-.record_api a:hover {
+.api-services a:hover {
   background: #11807f;
 }
 
 
 /*==================================================
- platform Css Start here 
+ platform-architecture Css Start here 
  ==================================================*/
 
-.platform {
+.platform-architecture {
   padding: 160px 0;
 }
 

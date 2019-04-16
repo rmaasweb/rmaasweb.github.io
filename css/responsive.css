@@ -19,7 +19,7 @@
 		font-size: 40px;
 		line-height: 50px;
 	}
-	.market span {
+	.open-source-section span {
 		font-size: 44px;
 	}
 	.ul_style2 li {
@@ -45,7 +45,7 @@
 	.archiving h2 {
 			font-size: 50px;
 	}
-	.market span {
+	.open-source-section span {
 		font-size: 44px;
 	}
 	.ul_style2 li {
@@ -53,7 +53,7 @@
 				min-height: 48px;
 	}
 	
-	.High_lights p {
+	.highlights p {
 		font-size: 30px;
 	}
 	.petabytes {
@@ -61,15 +61,15 @@
 		padding: 70px 30px;
 	}	
 	.archiving,
-	.High_lights,
-	.Secure_Compliant,
-	.market,
-	.record_api,
-	.platform,
+	.highlights,
+	.trust-badge-section,
+	.open-source-section,
+	.api-services,
+	.platform-architecture,
 	footer{
 		padding: 70px 0;
 	}
-	.record_api h3 {
+	.api-services h3 {
 		font-size: 30px;
 	}
 	.ul_style2 li {
@@ -103,17 +103,17 @@
 		font-size: 35px;
 		line-height: initial;
 	}
-	.Secure_Compliant span {
+	.trust-badge-section span {
 		font-size: 36px;
 	}
-	.Secure_Compliant p {
+	.trust-badge-section p {
 		margin-bottom: 20px;
 		font-size: 16px;
 	}	
-	.market span {
+	.open-source-section span {
 		font-size: 36px;
 	}
-	.record_api h3 {
+	.api-services h3 {
 		font-size: 24px;
 	}	
 	.ul_style li {
@@ -134,9 +134,9 @@
 	
 @media screen and (max-width: 767px) {
 	.archiving,
-	.High_lights,
-	.Secure_Compliant,
-	.record_api{
+	.highlights,
+	.trust-badge-section,
+	.api-services{
 		text-align: center;
 	}
 	.archiving h2 {
@@ -163,20 +163,20 @@
 	.micro_service {
 		padding: 50px 0;
 	}	
-	.Secure_Compliant img{
+	.trust-badge-section img{
 		max-width:55%;
 		margin-bottom: 30px;
 	}	
 		
-	.Secure_Compliant span,
-	.market span,
-	.record_api span{
+	.trust-badge-section span,
+	.open-source-section span,
+	.api-services span{
 		font-size: 35px;
 	} 
-	.record_api span {
+	.api-services span {
 		margin-bottom: 0px;
 	}
-	.record_api h3{
+	.api-services h3{
 		text-align: left;
 		font-size: 30px;
 		margin-top: 30px;
