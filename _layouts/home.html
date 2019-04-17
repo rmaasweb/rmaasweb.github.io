@@ -1,16 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>record.digital</title>
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link href="css/font-awesome.min.css" rel="stylesheet">
-<link href="css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/responsive.css">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>record.digital</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/animate.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
@@ -134,7 +134,7 @@
 			<li><i class="separator-line">|</i><div>Highly scalable cloud native architecture</div></li>
 			<li><i class="separator-line">|</i><div>All records encrypted in storage</div></li>
 			<li><i class="separator-line">|</i><div>Role based access integrated with your  corporate directory</div></li>
-			<li><i class="separator-line">|</i><div>ntegrate your COTS systems using a COTS  plugin from our marketplace</div></li>
+			<li><i class="separator-line">|</i><div>Integrate your COTS systems using a COTS  plugin from our marketplace</div></li>
 			<li><i class="separator-line">|</i><div>Integrate your custom systems using your own  staff or with our support</div></li>
 			<li><i class="separator-line">|</i><div>Your users just do their job and records are  managed automatically</div></li>
         </ul>
@@ -156,10 +156,9 @@
         <div class="col-12">
           <div class="copy_link">
             <ul class="list-unstyled">
-              <li><a href="javascript:void(0)">Read the docs</a></li>
-              <li><a href="javascript:void(0)">Pricing</a></li>
-              <li><a href="javascript:void(0)">Try it out</a></li>
-              <li><a href="javascript:void(0)">Marketplace</a></li>
+              {% for nav in site.data.navigation.footer %}
+                <li><a href="{{ nav.url }}">{{ nav.name }}</a></li>
+              {% endfor %}
             </ul>
             <p>&copy; 2019 GitHub, Inc.</p>
           </div>
@@ -168,12 +167,11 @@
     </div>
   </div>
 </footer>
-
 <!-- Optional JavaScript --> 
 <!-- jQuery first, then Popper.js, then Bootstrap JS --> 
 <script src="/js/jquery-3.3.1.slim.min.js"></script> 
 <script src="/js/popper.min.js"></script> 
 <!--<script src="js/bootstrap.bundle.js"></script>--> 
-<script src="j/s/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
