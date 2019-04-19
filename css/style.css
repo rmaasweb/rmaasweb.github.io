@@ -184,6 +184,8 @@ img {
 
 .hero-section-cta:hover {
   background: #11807f;
+  color: #fff;
+  text-decoration: none;
 }
 
 @media only screen and (min-width:1600px) and (max-width:1900px) {

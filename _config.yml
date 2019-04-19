@@ -97,3 +97,6 @@ author:
   weibo            :
   xing             :
   youtube          : # "https://youtube.com/c/MichaelRoseDesign"
+
+
+exclude: [ "README.md", "docs/api-lifecycle-v1.1.yaml" ]

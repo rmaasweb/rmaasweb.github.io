@@ -1,0 +1,787 @@
+swagger: '2.0'
+info:
+  version: '1.1'
+  title: 'Records Lifecycle Service'
+  description: 'Records Lifecycle Service'
+
+host: digitalrecords.showthething.com
+basePath: /api/
+schemes:
+ - https
+responses:
+  '400':
+    description: >-
+      The server cannot or will not process the request due to something that is
+      perceived to be a client error.
+    schema:
+      $ref: '#/definitions/error'
+  '401':
+    description: Invalid auth header. No credentials provided.
+    schema:
+      $ref: '#/definitions/error401'
+  '403':
+    description: >-
+      The server understood the request, but is refusing to fulfill it. Return
+      this if there is a problem with the client certificate.
+    schema:
+      $ref: '#/definitions/error403'
+  '404':
+    description: >-
+      The origin server did not find a current representation of the target
+      resource or is not willing to disclose that one exists.
+    schema:
+      $ref: '#/definitions/errors'
+  '406':
+    description: >-
+      The resource identified by the request is only capable of generating
+      response entities which have content characteristics not acceptable
+      according to the accept headers sent in the request.
+    schema:
+      $ref: '#/definitions/errors'
+  '500':
+    description: >-
+      Internal server error; no action required; may help to retry request later
+      or contact support.
+    schema:
+      $ref: '#/definitions/errors'
+
+
+parameters:
+  ownerQueryParameter:
+    name: owner
+    in: query
+    description: owner id
+    required: false
+    type: string
+    default: ''
+  keywordQueryParameter:
+    name: keyword
+    in: query
+    description: keyword
+    required: false
+    type: string
+    default: ''
+  recordIdPathParameter:
+    name: id
+    in: path
+    description: record id
+    required: true
+    type: string
+    default: ''
+  recordVersionIdPathParameter:
+    name: version_id
+    in: path
+    description: record version UUID
+    required: true
+    type: string
+    default: ''
+  documentIdPathParameter:
+    name: document_id
+    in: path
+    description: document UUID
+    required: true
+    type: string
+    default: ''
+  recordMetadataParameter:
+    name: recordMetedata
+    in: formData
+    type: string
+    description: record metadata for create/update record requests. see 'recordMetadata' model
+    required: true
+  recordFileParameter:
+    name: recordFile
+    in: formData
+    type: file
+    description: a record file
+    required: true
+paths:
+  '/records':
+    get:
+      tags:
+        - records
+      description: A collection of records, summary metadata only
+      operationId: getRecords
+      parameters:
+        - $ref: '#/parameters/ownerQueryParameter'
+        - $ref: '#/parameters/keywordQueryParameter'
+      responses:
+        '200':
+          description: A collection of records
+          schema:
+            $ref: '#/definitions/records'
+        '401':
+          $ref: '#/responses/401'
+        '500':
+          $ref: '#/responses/500'
+    post:
+      tags:
+        - records
+      description: Create a new record. If record contains files they must be pre-uploaded.
+      operationId: putRecord
+      consumes:
+        - application/json
+        - multipart/form-data
+      parameters:
+        - $ref: '#/parameters/recordMetadataParameter'
+      responses:
+        '200':
+          description: A created record
+          schema:
+            $ref: '#/definitions/recordVersion'
+        '401':
+          $ref: '#/responses/401'
+        '500':
+          $ref: '#/responses/500'
+  '/records/{id}':
+    get:
+      tags:
+        - records
+      description: Get the latest record version by id
+      operationId: getRecordById
+      parameters:
+        - $ref: '#/parameters/recordIdPathParameter'
+      responses:
+        '200':
+          description: A record
+          schema:
+            $ref: '#/definitions/recordVersion'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/errors'
+
+  '/records/{id}/versions':
+    get:
+      tags:
+        - records
+      description: A record versions
+      operationId: getRecordVersions
+      parameters:
+        - $ref: '#/parameters/recordIdPathParameter'
+      responses:
+        '200':
+          description: A record versions
+          schema:
+            $ref: '#/definitions/recordVersions'
+    post:
+      tags:
+        - records
+      description: Create new record version. Provide metadata and files to be attached/removed.
+      operationId: addRecordVersion
+      consumes:
+        - application/json
+        - multipart/form-data
+      parameters:
+        - $ref: '#/parameters/recordIdPathParameter'
+        - $ref: '#/parameters/recordMetadataParameter'
+      responses:
+        '200':
+          description: Freshly created record version
+          schema:
+            $ref: '#/definitions/recordVersion'
+        '401':
+          $ref: '#/responses/401'
+        '500':
+          $ref: '#/responses/500'
+
+  '/records/{id}/versions/{version_id}':
+    get:
+      tags:
+        - records
+      description: Get a specific record version
+      operationId: getRecordVersion
+      parameters:
+        - $ref: '#/parameters/recordIdPathParameter'
+        - $ref: '#/parameters/recordVersionIdPathParameter'
+      responses:
+        '200':
+          description: A record version
+          schema:
+            $ref: '#/definitions/recordVersion'
+
+  '/records/{id}/documents':
+    get:
+      tags:
+        - documents
+      description: Get a list of documents from the latest record version.
+      operationId: getRecordDocuments
+      parameters:
+        - $ref: '#/parameters/recordIdPathParameter'
+      responses:
+        '200':
+          description: record documents
+          schema:
+            $ref: '#/definitions/documents'
+
+  '/records/{id}/documents/{document_id}':
+    get:
+      tags:
+        - documents
+      description: Get a document by ID from the specific record
+      operationId: getRecordDocument
+      parameters:
+        - $ref: '#/parameters/recordIdPathParameter'
+        - $ref: '#/parameters/documentIdPathParameter'
+      responses:
+        '200':
+          description: The document content
+          schema:
+            $ref: '#/definitions/documents'
+
+  '/records/{id}/versions/{version_id}/documents':
+    get:
+      tags:
+        - documents
+      description: Get a list of documents from the specific record version.
+      operationId: getRecordVersionDocuments
+      parameters:
+        - $ref: '#/parameters/recordIdPathParameter'
+        - $ref: '#/parameters/recordVersionIdPathParameter'
+      responses:
+        '200':
+          description: A list of documents
+          schema:
+            $ref: '#/definitions/documents'
+
+  '/records/{id}/versions/{version_id}/documents/{document_id}':
+    get:
+      tags:
+        - documents
+      description: Get a document conetnt by id from the specific record version.
+      operationId: getRecordVersionDocument
+      parameters:
+        - $ref: '#/parameters/recordIdPathParameter'
+        - $ref: '#/parameters/recordVersionIdPathParameter'
+        - $ref: '#/parameters/documentIdPathParameter'
+      responses:
+        '200':
+          description: Document content
+          schema:
+            $ref: '#/definitions/documents'
+
+
+  '/filegate/':
+    post:
+      tags:
+        - documents
+      description: Return instructions to upload the document
+      responses:
+        '200':
+          description: Information required to upload the file
+
+definitions:
+
+  records:
+    type: object
+    properties:
+      count:
+        description: The total number of matches
+        type: number
+        example: 15350
+      limit:
+        description: The number of matches per page
+        type: number
+        example: 50
+      offset:
+        description: The current offset value
+        type: number
+        example: 100
+      next:
+        description: The link to the next page.
+        type: string
+        format: URI
+        example: 'https://search.api.digitalrecords.gov.au/v1/records?limit=50&offset=150'
+      previous:
+        description: The link to the previous page.
+        type: string
+        format: URI
+        example: 'https://search.api.digitalrecords.gov.au/v1/records?limit=50&offset=50'
+      results:
+        type: array
+        items:
+          type: object
+          properties:
+            identifier:
+              $ref: '#/definitions/recordIdentifier'
+            title:
+              $ref: '#/definitions/versionTitle'
+            description:
+              $ref: '#/definitions/versionDescription'
+            dateCreated:
+              $ref: '#/definitions/recordDateCreated'
+            dateUpdated:
+              $ref: '#/definitions/versionDateUpdated'
+            type:
+              $ref: '#/definitions/recordType'
+            organisationName:
+              $ref: '#/definitions/organisationName'
+            network:
+              $ref: '#/definitions/recordNetwork'
+            numberOfVersions:
+              description: The total number of the record verions
+              type: number
+              example: 3
+    example:
+      count: 8
+      limit: 2
+      offset: 0
+      previous: null
+      next: 'https://search.api.digitalrecords.gov.au/v1/records?limit=2&offset=2'
+      results:
+      - identifier: 'austrac.gov.au:1293847563'
+        title: OMG Transactions 2016
+        description: Policy brief on
+        dateCreated: '2017-03-18T12:12:00'
+        dateUpdated: '2017-03-18T12:12:00'
+        network: digitalrecords.finance.gov.au
+        type: document
+        organisationName: Indiginous affairs group
+        numberOfVersions: 3
+      - identifier: 'austrac.gov.au:1293847564'
+        title: OMG Transactions 2016
+        description: Policy brief on
+        dateCreated: '2017-03-18T12:12:00'
+        dateUpdated: '2017-03-18T12:12:00'
+        network: digitalrecords.finance.gov.au
+        type: document
+        organisationName: Indiginous affairs group
+        numberOfVersions: 3
+
+  recordNetwork:
+    description: The identifier of the physical network in which the record is hosted
+    type: string
+    example: digitalrecords.finance.gov.au
+
+
+#  recordName:
+#    description: The root / container entity for all versions of a record.
+#    type: object
+#    properties:
+#      identifier:
+#        description: The unique and immutable identifier of a record, independent of version.
+#        type: string
+#        example: austrac.gov.au:1293847563
+#      network:
+#        description: The identifier of the physical network in which the record is hosted
+#        type: string
+#        example: digitalrecords.finance.gov.au
+
+  organisationIdentifier:
+    description: unique identifier of the organisation unit
+    type: string
+    example: austrac.gov.au:123
+  organisationName:
+    description: Name or title of the org unit
+    type: string
+    example: Indiginous affairs group
+  organisationParentOrg:
+    description: The identifier of the parent of the org unit
+    type: string
+    example: austrac.gov.au:11
+
+#  organisationUnit:
+#    description: The organisation unit that is the owner of the record
+#    type: object
+#    properties:
+#      identifier:
+#          $ref: '#/definitions/organisationIdentifier'
+#      name:
+#          $ref: '#/definitions/organisationName'
+#      parentOrg:
+#          $ref: '#/definitions/organisationParentOrg'
+#    required:
+#      - identifier
+#      - name
+
+  recordsAuthorityIdentifier:
+    description: Unique identifier of the records authority
+    type: string
+    example: naa.gov.au:gda21
+  recordsAuthorityIssuer:
+    description: The organisation that issued the record authority ruling
+    type: string
+    example: naa.gov.au
+  recordsAuthorityTitle:
+    description: The name or title of the records authoruty
+    type: string
+
+#  recordsAuthority:
+#    description: The NAA or Agency specific ruleset that categorises the record for retention and disposal purposes.
+#    type: object
+#    properties:
+#      identifier:
+#        $ref: '#/definitions/recordsAuthorityIdentifier'
+#      issuer:
+#        $ref: '#/definitions/recordsAuthorityIssuer'
+#      title:
+#        $ref: '#/definitions/recordsAuthorityTitle'
+
+  rightsIdentifier:
+    description: A unique identifier of the legal rights scheme
+    type: string
+    example: creativecommons.org/licenses/by/4.0/
+  rightsName:
+    description: The name or title of the rights scheme
+    type: string
+    example: Creative Commons Attribution 4.0 International
+
+
+#  rights:
+#    description: The legal rights that applies to the record.
+#    type: object
+#    properties:
+#      identifier:
+#        $ref: '#/definitions/rightsIdentifier'
+#      name:
+#        $ref: '#/definitions/rightsName'
+
+
+  documents:
+    description: collection of documents metadata
+    type: object
+    properties:
+      'documents':
+        type: array
+        items:
+          type: object
+          properties:
+            filename:
+              $ref: '#/definitions/documentFilename'
+            documentType:
+              $ref: '#/definitions/documentTypeName'
+            mimeType:
+              $ref: '#/definitions/documentMimeType'
+            size:
+              $ref: '#/definitions/documentSize'
+            dateCreated:
+              $ref: '#/definitions/documentDateCreated'
+            hash:
+              $ref: '#/definitions/documentHash'
+
+
+
+  documentFilename:
+    description: Filename of the document
+    type: string
+    example: OMCGTransactions2016.pdf
+  documentDateCreated:
+    description: ISO-8601 date time that the record version was created
+    type: string
+    format: date-time
+  documentMimeType:
+    description: The IANA MIME type(https://www.iana.org/assignments/media-types/media-types.xhtml) of the Object
+    type: string
+    example: application/pdf
+  documentTypeName:
+    description: Name of the document type
+    type: string
+    example: Binary
+  documentHash:
+    description: hash of the document
+    type: string
+    example: ''
+  documentSize:
+    description: size in bytes of the document
+    type: number
+    example: 1200430
+
+
+#  document:
+#    description: One or more documents that comprise the record
+#    type: object
+#    properties:
+#      recordVersion:
+#        description: Pointer to the record verison(multi-hash)
+#        type: string
+#        example: 12209c...cbe47
+#      object:
+#        description: Pointer to the binary object (multi-hash) described by this document
+#        type: string
+#        example: 23cd56...g421
+#      type:
+#        description: Pointer to the document type IRI that categorises this document
+#        type: string
+#        example: digitalrecords.finance.gov.au/documenttypes/33
+
+#  documentType:
+#    description: An abstract type for documents that described how they should be understood / processed.
+#    type: object
+#    properties:
+#      identifier:
+#        description: Unique identifier IRI of the document type
+#        type: string
+#        example: digitalrecords.finance.gov.au/documenttypes/33
+#      name:
+#        description: Name of the document type
+#        type: string
+#        example: Binary
+
+#  object:
+#    description: An actual binary or structured data file that is the record
+#    type: object
+#    properties:
+#      hash:
+#        description: multi-hash of the binary object
+#        type: string
+#        example: 23cd56...g421
+#      size:
+#        description: size in bytes of the binary object
+#        type: number
+#        example: 1200430
+#      content:
+#        description: the actual binary file
+#        type: string
+
+  recordVersions:
+    description: List of record versions
+    type: object
+    properties:
+      versions:
+        type: array
+        items:
+          type: object
+          properties:
+            sequence:
+              $ref: '#/definitions/versionSequence'
+            tag:
+              $ref: '#/definitions/versionTag'
+            dateCreated:
+              $ref: '#/definitions/versionDateCreated'
+            hash:
+              $ref: '#/definitions/versionHash'
+            location:
+              $ref: '#/definitions/versionLocation'
+
+  versionSequence:
+    description: auto-incrementing integer version sequence number
+    type: number
+    example: 3
+  versionTag:
+    description: User assigned descriptive lable for the version
+    type: string
+    example: Final Draft
+  versionDateCreated:
+    description: ISO-8601 date time that the record version was created
+    type: string
+    format: date-time
+    example: '2017-03-18T12:12:00'
+  versionDateUpdated:
+    description: ISO-8601 date time that the record version was updated
+    type: string
+    format: date-time
+    example: '2017-03-18T12:12:00'
+  versionHash:
+    description: multi-hash of version metadata and all documents
+    type: string
+    example: 12209c...cbe47
+  versionLocation:
+    description: ''
+    type: string
+    format: URI
+    example: https://lifecycle.api.digitalrecords.gov.au/v1/records/austrac.gov.au:1293847563/versions/2
+  versionAuthor:
+    description: Name of the record version author
+    type: string
+    example: Bob Smith
+
+
+  recordOwner:
+    description: Pointer to the organisation unit IRI that is the record owner
+    type: string
+    example: austrac.gov.au:12
+  recordIdentifier:
+    description: Pointer to the RecordName IRI of which this is a version
+    type: string
+    example: austrac.gov.au:1293847563
+  recordType:
+    description: Pointer to the RecordName IRI of which this is a version
+    type: string
+    example: document
+    enum: [document]
+  versionTitle:
+    description: The title or name of the record
+    type: string
+    example: OMG Transactions 2016
+  versionDescription:
+    description: Rich description of the record
+    type: string
+    example: Policy brief on
+  versionClassification:
+    description: ASD InfoSec classification for the record
+    type: string
+    enum: ['UNCLASSIFIED']
+    example: UNCLASSIFIED
+  recordDateCreated:
+    description: ISO-8601 date time that the first record version was created
+    type: string
+    format: date-time
+    example: '2017-03-18T12:12:00'
+
+  dlm:
+    description: ASD Disemination Limiting marker
+    type: string
+    enum: ['Sensitive-Personal']
+    example: Sensitive-Personal
+  disposalAction:
+    description: Disposal action
+    type: string
+    enum: ['Retain permanently']
+    example: Retain permanently
+  language:
+    description: ISO-639-1 language code
+    type: string
+    example: EN
+
+
+#  recordMetadata:
+#    description: The mutable metadata about a record version
+#    type: object
+#    properties:
+#      owner:
+#        $ref: '#/definitions/recordOwner'
+#      recordType:
+#        $ref: '#/definitions/recordType'
+#      title:
+#        $ref: '#/definitions/versionTitle'
+#      description:
+#        $ref: '#/definitions/versionDescription'
+#      classification:
+#        $ref: '#/definitions/versionClassification'
+#      dlm:
+#        $ref: '#/definitions/dlm'
+#      rights:
+#        $ref: '#/definitions/rightsIdentifier'
+#      tag:
+#        $ref: '#/definitions/versionTag'
+#      recordsAuthority:
+#        $ref: '#/definitions/recordsAuthorityIdentifier'
+#      disposalAction:
+#        $ref: '#/definitions/disposalAction'
+#      language:
+#        $ref: '#/definitions/language'
+
+  recordVersion:
+    description: The mutable metadata about a record version
+    type: object
+    properties:
+      identifier:
+        $ref: '#/definitions/recordIdentifier'
+      sequence:
+        $ref: '#/definitions/versionSequence'
+      owner:
+        $ref: '#/definitions/recordOwner'
+      recordType:
+        $ref: '#/definitions/recordType'
+      dateCreated:
+        $ref: '#/definitions/recordDateCreated'
+      dateUpdated:
+        $ref: '#/definitions/versionDateUpdated'
+      author:
+        $ref: '#/definitions/versionAuthor'
+      title:
+        $ref: '#/definitions/versionTitle'
+      description:
+        $ref: '#/definitions/versionDescription'
+      classification:
+        $ref: '#/definitions/versionClassification'
+      dlm:
+        $ref: '#/definitions/dlm'
+      rights:
+        $ref: '#/definitions/rightsIdentifier'
+      tag:
+        $ref: '#/definitions/versionTag'
+      hash:
+        $ref: '#/definitions/versionHash'
+      recordsAuthority:
+        $ref: '#/definitions/recordsAuthorityIdentifier'
+      disposalAction:
+        $ref: '#/definitions/disposalAction'
+      language:
+        $ref: '#/definitions/language'
+      documents:
+        $ref: '#/definitions/documents'
+      versions:
+        $ref: '#/definitions/recordVersions'
+    example:
+      identifier: 'austrac.gov.au:1293847563'
+      sequence: 1
+      owner: 'austrac.gov.au:12'
+      recordType: document
+      dateCreated: '2017-03-18T12:12:00'
+      dateUpdated: '2017-03-18T12:12:00'
+      author: Bob Smith
+      title: OMG Transactions 2016
+      description: Policy brief on
+      classification: UNCLASSIFIED
+      dlm: Sensitive-Personal
+      rights: creativecommons.org/licenses/by/4.0/
+      tag: Final Draft
+      hash: 12209c...cbe47
+      recordsAuthority: 'naa.gov.au:gda21'
+      disposalAction: Retain permanently
+      language: EN
+      documents:
+        documents:
+          - filename: OMCGTransactions2016.pdf
+            documentType: Binary
+            mimeType: application/pdf
+            size: 1200430
+            dateCreated: '2017-06-20T21:08:48.393Z'
+            hash: ''
+      versions:
+        versions:
+          - sequence: 1
+            tag: First Draft
+            dateCreated: '2017-03-18T12:12:00'
+            hash: 12209c...cbe47
+            location: 'https://lifecycle.api.digitalrecords.gov.au/v1/records/austrac.gov.au:1293847563/versions/1'
+
+  errors:
+    description: Error objects model per 'http://jsonapi.org/format/#error-objects'
+    type: object
+    properties:
+      errors:
+        type: array
+        items:
+          $ref: '#/definitions/error'
+  error:
+    description: An error object model per 'http://jsonapi.org/format/#error-objects'
+    properties:
+      code:
+        type: string
+        description: An application-specific error code, expressed as a string value.
+      title:
+        type: string
+        description:  A short, human-readable summary of the problem that SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization.
+      detail:
+        type: string
+        description:  A human-readable explanation specific to this occurrence of the problem. Like title, this field’s value can be localized.
+    required:
+      - code
+      - title
+      - detail
+  error401:
+    type: object
+    properties:
+      errors:
+        type: array
+        items:
+          $ref: '#/definitions/error'
+    example:
+      errors:
+        - code: DR-X401
+          title: Authentication Failed
+          detail: Invalid auth header. No credentials provided.
+  error403:
+    type: object
+    properties:
+      errors:
+        type: array
+        items:
+          $ref: '#/definitions/error'
+    example:
+      errors:
+        - code: DR-X403
+          title: Permission Denied
+          detail: >-
+            Access to the record/document is missing and needs to be requested.

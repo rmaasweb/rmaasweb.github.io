@@ -1,0 +1,21 @@
+header:
+- name: Read the docs
+  url: "/docs/"
+  target: "_blank"
+- name: "Pricing"
+  url: "#"
+- name: "Try it out"
+  url: "#"
+- name: "Marketplace"
+  url: "#"
+
+footer:
+- name: Read the docs
+  url: "/docs/"
+  target: "_blank"
+- name: "Pricing"
+  url: "#"
+- name: "Try it out"
+  url: "#"
+- name: "Marketplace"
+  url: "#"
